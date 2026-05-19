@@ -7,13 +7,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --verde: #006600;
+    --verde: #064028;
     --verde-claro: #00a650;
     --amarelo: #FFCC00;
     --azul: #003399;
     --azul-escuro: #001a5e;
     --branco: #f8f5ef;
-    --cinza: #1a1a1a;
+    --cinza: #064028;
     --vermelho: #cc0000;
   }
 
@@ -27,16 +27,178 @@
     overflow-x: hidden;
   }
 
+  /* ========== VIDEO INTRO ========== */
+  #video-intro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1.2s ease;
+  }
+
+  #intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.88;
+  }
+
+  .intro-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(0,0,0,0.38);
+    pointer-events: none;
+  }
+
+  .intro-overlay img {
+    height: 52px;
+    filter: brightness(0) invert(1);
+    animation: introPulse 2s ease-in-out infinite;
+  }
+
+  .intro-overlay-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.45em;
+    color: rgba(255,255,255,0.45);
+  }
+
+  @keyframes introPulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+
+  .intro-skip {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.6);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    padding: 10px 26px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .intro-skip:hover {
+    border-color: var(--amarelo);
+    color: var(--amarelo);
+  }
+
+  .intro-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: var(--vermelho);
+    animation: introProgress 10s linear forwards;
+  }
+
+  @keyframes introProgress {
+    from { width: 0%; }
+    to   { width: 100%; }
+  }
+
+  /* ========== BARRA PATROCINADORES TOPO ========== */
+  .patrocinadores-bar {
+    background: #000;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 10px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .patrocinadores-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .patrocinadores-bar-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    color: rgba(255,255,255,0.28);
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    padding-right: 22px;
+  }
+
+  .patrocinadores-logos {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .patrocinador-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .patrocinador-logo img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+
+  .patrocinador-logo img:hover { opacity: 1; }
+
+  .patrocinador-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--amarelo);
+    border: 1px solid rgba(255,204,0,0.4);
+    padding: 2px 7px;
+    border-radius: 2px;
+  }
+
+  .patrocinadores-bar-right img {
+    height: 26px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    opacity: 0.6;
+  }
+
+  @media (max-width: 600px) {
+    .patrocinadores-bar {
+      padding: 10px 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .patrocinadores-bar-label { display: none; }
+    .patrocinador-badge { display: none; }
+    .patrocinador-logo img { height: 24px; }
+    .patrocinadores-bar-right img { height: 20px; }
+  }
+
   /* ========== NAV ========== */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
+    position: sticky;
+    top: 0;
     z-index: 100;
     padding: 14px 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(0,0,0,0.90);
+    background: rgba(0,0,0,0.92);
     backdrop-filter: blur(14px);
     border-bottom: 2px solid var(--vermelho);
   }
@@ -45,7 +207,7 @@
     height: 38px;
     width: auto;
     display: block;
-    filter: brightness(0) invert(1); /* logo preta → branca no fundo escuro */
+    filter: brightness(0) invert(1);
   }
 
   .nav-links {
@@ -74,7 +236,7 @@
   /* ========== HERO ========== */
   .hero {
     min-height: 100vh;
-    background: linear-gradient(160deg, #000 0%, #0a0a0a 30%, #001240 65%, #003399 100%);
+    background: linear-gradient(160deg, #021a10 0%, #032518 30%, #042f1e 55%, #064028 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,21 +247,12 @@
     overflow: hidden;
   }
 
-  /* linha vermelha no topo como referência à logo */
-  .hero::after {
-    content: '';
-    position: absolute;
-    top: 68px; left: 0; right: 0;
-    height: 2px;
-    background: var(--vermelho);
-  }
-
   .hero::before {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 55% 45% at 50% 65%, rgba(0,51,153,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 55% 45% at 50% 65%, rgba(0,100,40,0.25) 0%, transparent 70%),
       radial-gradient(ellipse 70% 25% at 20% 90%, rgba(204,0,0,0.07) 0%, transparent 60%);
     pointer-events: none;
   }
@@ -117,7 +270,7 @@
 
   @keyframes twinkle {
     0%, 100% { opacity: 0; transform: scale(0.5); }
-    50% { opacity: 0.4; transform: scale(1.3); }
+    50% { opacity: 0.35; transform: scale(1.3); }
   }
 
   .hero-badge {
@@ -351,7 +504,7 @@
   /* ========== ENCARTES / TIMELINE ========== */
   .encartes {
     padding: 80px 0 110px;
-    background: linear-gradient(to bottom, var(--cinza), #0b1420);
+    background: linear-gradient(to bottom, var(--cinza), #032018);
   }
 
   .encartes-header {
@@ -518,7 +671,7 @@
 
   /* ========== PERSONAGENS ========== */
   .destaques {
-    background: linear-gradient(180deg, #0b1420 0%, #000814 100%);
+    background: linear-gradient(180deg, #032018 0%, #021410 100%);
     padding: 100px 28px;
   }
 
@@ -614,11 +767,6 @@
 
   .anunciante-slot:hover { border-color: var(--amarelo); background: rgba(255,204,0,0.04); }
 
-  /* Quando tiver logo real:
-     .anunciante-slot img { max-height: 56px; width: auto; filter: brightness(0) invert(1); opacity: 0.7; }
-     .anunciante-slot img:hover { opacity: 1; }
-  */
-
   .anunciante-slot-icon { font-size: 2rem; margin-bottom: 10px; }
   .anunciante-slot-text { font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; letter-spacing: 0.2em; color: rgba(255,255,255,0.28); }
   .anunciante-slot-sub  { font-size: 0.7rem; color: rgba(255,255,255,0.18); margin-top: 5px; }
@@ -634,7 +782,7 @@
 
   /* ========== NEWSLETTER ========== */
   .newsletter {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 50%, #0a0a0a 100%);
+    background: linear-gradient(135deg, #021a10 0%, #1a0000 50%, #021a10 100%);
     border-top: 2px solid var(--vermelho);
     padding: 90px 28px;
     text-align: center;
@@ -719,17 +867,45 @@
 </head>
 <body>
 
+<!-- ========== VIDEO INTRO ========== -->
+<div id="video-intro">
+  <video
+    id="intro-video"
+    src="jogador-chute.mp4"
+    autoplay
+    muted
+    playsinline
+  ></video>
+
+  <div class="intro-overlay">
+    <img src="LINE_HORIZONTAL.png" alt="Tribuna Hoje">
+    <div class="intro-overlay-tag">HISTÓRIAS DAS COPAS 2026</div>
+  </div>
+
+  <button class="intro-skip" onclick="skipIntro()">PULAR →</button>
+  <div class="intro-progress" id="intro-progress"></div>
+</div>
+
+<!-- ========== BARRA PATROCINADORES ========== -->
+<div class="patrocinadores-bar">
+  <div class="patrocinadores-bar-left">
+    <span class="patrocinadores-bar-label">⭐ Nossa Seleção de Patrocinadores</span>
+    <div class="patrocinadores-logos">
+      <div class="patrocinador-logo">
+        <img src="logopatrocinador1.png" alt="">
+      </div>
+      <div class="patrocinador-logo">
+        <img src="logopatrocinador2.png" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ========== NAV ========== -->
 <nav>
   <a href="#" class="nav-logo">
     <img src="LINE_HORIZONTAL.png" alt="Tribuna Hoje">
   </a>
-  <ul class="nav-links">
-    <li><a href="#encartes">Edições</a></li>
-    <li><a href="#personagens">Personagens</a></li>
-    <li><a href="#anuncie">Anuncie</a></li>
-    <li><a href="#newsletter">WhatsApp</a></li>
-  </ul>
 </nav>
 
 <!-- ========== HERO ========== -->
@@ -820,7 +996,6 @@
 
   <div class="timeline">
 
-    <!-- ENCARTE 1 -->
     <div class="encarte-card">
       <div class="encarte-content reveal">
         <div class="encarte-edicao">◈ ENCARTE 1 · EDIÇÃO DE ABERTURA</div>
@@ -840,7 +1015,6 @@
       <div class="encarte-spacer"></div>
     </div>
 
-    <!-- ENCARTE 2 -->
     <div class="encarte-card">
       <div class="encarte-spacer"></div>
       <div class="encarte-center"><div class="encarte-dot">2</div></div>
@@ -859,7 +1033,6 @@
       </div>
     </div>
 
-    <!-- ENCARTE 3 -->
     <div class="encarte-card">
       <div class="encarte-content reveal">
         <div class="encarte-edicao">◈ ENCARTE 3</div>
@@ -879,7 +1052,6 @@
       <div class="encarte-spacer"></div>
     </div>
 
-    <!-- ENCARTE 4 -->
     <div class="encarte-card">
       <div class="encarte-spacer"></div>
       <div class="encarte-center"><div class="encarte-dot">4</div></div>
@@ -898,7 +1070,6 @@
       </div>
     </div>
 
-    <!-- ENCARTE 5 -->
     <div class="encarte-card">
       <div class="encarte-content reveal">
         <div class="encarte-edicao">◈ ENCARTE 5</div>
@@ -918,7 +1089,6 @@
       <div class="encarte-spacer"></div>
     </div>
 
-    <!-- ENCARTE 6 -->
     <div class="encarte-card">
       <div class="encarte-spacer"></div>
       <div class="encarte-center"><div class="encarte-dot">6</div></div>
@@ -938,7 +1108,6 @@
       </div>
     </div>
 
-    <!-- ENCARTE 7 -->
     <div class="encarte-card">
       <div class="encarte-content reveal">
         <div class="encarte-edicao">◈ ENCARTE 7 · EDIÇÃO FINAL DA COPA</div>
@@ -957,18 +1126,16 @@
       <div class="encarte-spacer"></div>
     </div>
 
-  </div><!-- /timeline -->
+  </div>
 </section>
 
 <!-- ========== PERSONAGENS ========== -->
 <section class="destaques" id="personagens">
   <div class="destaques-inner">
-
     <div class="destaques-header reveal">
       <span class="section-tag">◈ OS PROTAGONISTAS</span>
       <h2 class="section-title">PERSONAGENS <em>INESQUECÍVEIS</em></h2>
     </div>
-
     <div class="personagens-grid">
       <div class="personagem-card reveal">
         <span class="personagem-icon">⚽</span>
@@ -1019,24 +1186,18 @@
         <span class="personagem-edicao">Ídolos e Fatos · Edição 1</span>
       </div>
     </div>
-
   </div>
 </section>
 
 <!-- ========== ANUNCIANTES ========== -->
 <section class="anunciantes" id="anuncie">
   <div class="anunciantes-inner">
-
     <div class="anunciantes-header reveal">
       <span class="section-tag">◈ PATROCINADORES</span>
       <h2 class="section-title">ANUNCIE NAS <em>COPAS</em></h2>
       <p>Posicione sua marca ao lado do melhor jornalismo esportivo de Alagoas, no impresso e no digital, durante toda a Copa do Mundo 2026.</p>
     </div>
-
     <div class="anunciantes-grid reveal">
-      <!-- Para adicionar logo real, substitua o conteúdo interno por:
-           <img src="logo-empresa.png" alt="Nome da empresa">
-      -->
       <div class="anunciante-slot">
         <span class="anunciante-slot-icon">🏢</span>
         <div class="anunciante-slot-text">SUA EMPRESA</div>
@@ -1063,12 +1224,10 @@
         <div class="anunciante-slot-sub">Slot disponível</div>
       </div>
     </div>
-
     <div class="anunciante-cta reveal">
       <p>Garanta seu espaço. Fale com a equipe comercial do Tribuna Hoje.</p>
       <a href="mailto:comercial@tribunahoje.com.br" class="btn btn-primary">Falar com o comercial</a>
     </div>
-
   </div>
 </section>
 
@@ -1094,7 +1253,36 @@
 
 <!-- ========== SCRIPTS ========== -->
 <script>
-  // Estrelas animadas no hero
+  // ── VIDEO INTRO ──────────────────────────────────────
+  const introEl   = document.getElementById('video-intro');
+  const videoEl   = document.getElementById('intro-video');
+  const MAX_SECS  = 12; // some automaticamente após 12s se o vídeo não carregar
+  let introTimer;
+
+  function skipIntro() {
+    clearTimeout(introTimer);
+    introEl.style.opacity = '0';
+    introEl.style.pointerEvents = 'none';
+    setTimeout(() => { introEl.style.display = 'none'; }, 1200);
+    document.body.style.overflow = 'auto';
+  }
+
+  // Bloqueia scroll enquanto o vídeo toca
+  document.body.style.overflow = 'hidden';
+
+  // Some quando o vídeo termina
+  videoEl.addEventListener('ended', skipIntro);
+
+  // Fallback: some após MAX_SECS mesmo sem vídeo
+  introTimer = setTimeout(skipIntro, MAX_SECS * 1000);
+
+  // Se o arquivo de vídeo não existir/carregar, some em 1s
+  videoEl.addEventListener('error', () => {
+    clearTimeout(introTimer);
+    setTimeout(skipIntro, 800);
+  });
+
+  // ── ESTRELAS HERO ────────────────────────────────────
   const starsEl = document.getElementById('stars');
   for (let i = 0; i < 55; i++) {
     const s = document.createElement('div');
@@ -1108,7 +1296,7 @@
     starsEl.appendChild(s);
   }
 
-  // Scroll reveal suave
+  // ── SCROLL REVEAL ────────────────────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {

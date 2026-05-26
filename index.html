@@ -113,85 +113,63 @@
 
   /* ========== BARRA PATROCINADORES TOPO ========== */
   .patrocinadores-bar {
-    background: #000;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    padding: 10px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  background: #000;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  .patrocinadores-bar-left {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-  }
+.patrocinadores-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
 
-  .patrocinadores-bar-label {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.28em;
-    color: #ffffff;
-    text-transform: uppercase;
-    white-space: nowrap;
-    border-right: 1px solid rgba(255,255,255,0.1);
-    padding-right: 22px;
-  }
+.patrocinadores-bar-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+  color: #ffffff;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.2);
+  padding-right: 22px;
+}
 
-  .patrocinadores-logos {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-  }
+.patrocinadores-logos {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
 
-  .patrocinador-logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+.patrocinador-logo img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
 
-  .patrocinador-logo img {
-    height: 32px;
-    width: auto;
-    object-fit: contain;
-    opacity: 0.9;
-    transition: opacity 0.2s;
-  }
+.patrocinador-logo img:hover { opacity: 1; }
 
-  .patrocinador-logo img:hover { opacity: 1; }
+.patrocinadores-bar-right img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
 
-  .patrocinador-badge {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.58rem;
-    letter-spacing: 0.2em;
-    color: var(--amarelo);
-    border: 1px solid rgba(255,204,0,0.4);
-    padding: 2px 7px;
-    border-radius: 2px;
-  }
+.patrocinadores-bar-right img:hover { opacity: 1; }
 
-  .patrocinadores-bar-right img {
-    height: 28px;
-    width: auto;
-    object-fit: contain;
-    opacity: 0.9;
-    transition: opacity 0.2s;
-  }
-
-  .patrocinadores-bar-right img:hover { opacity: 1; }
-
-  @media (max-width: 600px) {
-    .patrocinadores-bar {
-      padding: 10px 16px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-    .patrocinadores-bar-label { display: none; }
-    .patrocinador-badge { display: none; }
-    .patrocinador-logo img { height: 24px; }
-    .patrocinadores-bar-right img { height: 20px; }
-  }
-
+@media (max-width: 600px) {
+  .patrocinadores-bar { padding: 10px 16px; flex-wrap: wrap; gap: 12px; }
+  .patrocinadores-bar-label { display: none; }
+  .patrocinador-logo img { height: 24px; }
+  .patrocinadores-bar-right img { height: 20px; }
+}
   /* ========== NAV ========== */
   nav {
     position: sticky;

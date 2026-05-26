@@ -131,7 +131,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 0.68rem;
     letter-spacing: 0.28em;
-    color: rgba(255,255,255,0.28);
+    color: #ffffff;
     text-transform: uppercase;
     white-space: nowrap;
     border-right: 1px solid rgba(255,255,255,0.1);
@@ -171,11 +171,14 @@
   }
 
   .patrocinadores-bar-right img {
-    height: 26px;
+    height: 28px;
     width: auto;
-    filter: brightness(0) invert(1);
-    opacity: 0.6;
+    object-fit: contain;
+    opacity: 0.9;
+    transition: opacity 0.2s;
   }
+
+  .patrocinadores-bar-right img:hover { opacity: 1; }
 
   @media (max-width: 600px) {
     .patrocinadores-bar {
@@ -898,6 +901,9 @@
         <img src="logopatrocinador2.png" alt="">
       </div>
     </div>
+  </div>
+  <div class="patrocinadores-bar-right">
+    <img src="somoscop.png" alt="Somos Copa">
   </div>
 </div>
 

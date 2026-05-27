@@ -48,7 +48,6 @@
     filter: brightness(0) invert(1);
   }
 
-  /* patrocinadores dentro do nav */
   .nav-patrocinadores {
     display: flex;
     align-items: center;
@@ -84,7 +83,6 @@
 
   .nav-patrocinadores-logos img:hover { opacity: 1; }
 
-  /* somoscop no canto direito do nav */
   .nav-somoscop img {
     height: 26px;
     width: auto;
@@ -130,17 +128,15 @@
     opacity: 1;
   }
 
-  /* overlay mais sutil — só escurece levemente, sem verde */
   .hero::before {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(to bottom,
-        rgba(0,0,0,0.55) 0%,
-        rgba(0,0,0,0.30) 40%,
-        rgba(0,0,0,0.55) 75%,
-        rgba(0,0,0,0.85) 100%);
+    background: linear-gradient(to bottom,
+      rgba(0,0,0,0.55) 0%,
+      rgba(0,0,0,0.30) 40%,
+      rgba(0,0,0,0.55) 75%,
+      rgba(0,0,0,0.85) 100%);
     z-index: 1;
     pointer-events: none;
   }
@@ -211,43 +207,6 @@
     line-height: 1.65;
     animation: fadeDown 1s 0.35s ease both;
     position: relative; z-index: 2;
-  }
-
-  /* ── NOMES EM DESTAQUE ── */
-  .hero-nomes {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px 6px;
-    margin-top: 32px;
-    max-width: 780px;
-    animation: fadeDown 1s 0.45s ease both;
-    position: relative; z-index: 2;
-  }
-
-  .hero-nome-tag {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    color: #fff;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.18);
-    padding: 6px 16px;
-    border-radius: 2px;
-    transition: background 0.2s, border-color 0.2s;
-    white-space: nowrap;
-  }
-
-  .hero-nome-tag:hover {
-    background: rgba(255,204,0,0.12);
-    border-color: var(--amarelo);
-    color: var(--amarelo);
-  }
-
-  .hero-nome-tag.destaque {
-    background: rgba(204,0,0,0.25);
-    border-color: rgba(204,0,0,0.5);
-    color: #fff;
   }
 
   .hero-meta {
@@ -356,6 +315,88 @@
     to   { transform: translateX(-50%); }
   }
 
+  /* ========== GALERIA ANTES/DEPOIS ========== */
+  .galeria-restauracao {
+    padding: 80px 28px;
+    background: linear-gradient(to bottom, #000, #021a10);
+  }
+
+  .galeria-restauracao-inner { max-width: 1080px; margin: 0 auto; }
+
+  .galeria-header {
+    text-align: center;
+    margin-bottom: 52px;
+  }
+
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  @media (max-width: 760px) {
+    .galeria-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+
+  .galeria-item {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .galeria-item:hover img { transform: scale(1.04); }
+
+  .galeria-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 28px 16px 14px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .galeria-label strong {
+    display: block;
+    font-size: 1rem;
+    color: #fff;
+    letter-spacing: 0.1em;
+    margin-bottom: 3px;
+  }
+
+  .galeria-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+
+  .galeria-badge.antes {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.7);
+  }
+
+  .galeria-badge.depois {
+    background: rgba(255,204,0,0.85);
+    color: #000;
+  }
+
   /* ========== SOBRE ========== */
   .sobre {
     max-width: 980px;
@@ -434,10 +475,116 @@
 
   .divider-ball { color: var(--vermelho); font-size: 1.1rem; }
 
+  /* ========== CAPAS 2018 ========== */
+  .capas2018 {
+    padding: 80px 28px 110px;
+    background: linear-gradient(to bottom, var(--cinza), #032018);
+  }
+
+  .capas2018-inner { max-width: 1080px; margin: 0 auto; }
+
+  .capas2018-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .capas2018-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .capas2018-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  }
+
+  .capa-card {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.25s, border-color 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    aspect-ratio: 3/4;
+  }
+
+  .capa-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255,204,0,0.45);
+  }
+
+  .capa-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+
+  .capa-card:hover img { transform: scale(1.04); }
+
+  .capa-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 55%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 18px 14px;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .capa-card:hover .capa-overlay { opacity: 1; }
+
+  .capa-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--amarelo);
+    margin-bottom: 4px;
+  }
+
+  .capa-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .capa-pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--amarelo);
+    color: #000;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    padding: 6px 14px;
+    border-radius: 2px;
+    width: fit-content;
+  }
+
+  .capa-numero-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: var(--vermelho);
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+
   /* ========== ENCARTES / TIMELINE ========== */
   .encartes {
     padding: 80px 0 110px;
-    background: linear-gradient(to bottom, var(--cinza), #032018);
+    background: linear-gradient(to bottom, #032018, #021410);
   }
 
   .encartes-header {
@@ -602,59 +749,6 @@
 
   .encarte-btn:hover { background: var(--amarelo); color: #000; }
 
-  /* ========== PERSONAGENS ========== */
-  .destaques {
-    background: linear-gradient(180deg, #032018 0%, #021410 100%);
-    padding: 100px 28px;
-  }
-
-  .destaques-inner { max-width: 1080px; margin: 0 auto; }
-  .destaques-header { text-align: center; margin-bottom: 60px; }
-
-  .personagens-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
-    gap: 18px;
-  }
-
-  .personagem-card {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 7px;
-    padding: 24px;
-    transition: transform 0.2s, border-color 0.2s;
-  }
-
-  .personagem-card:hover { transform: translateY(-4px); border-color: rgba(204,0,0,0.4); }
-
-  .personagem-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
-
-  .personagem-nome {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.1rem;
-    color: #fff;
-    margin-bottom: 7px;
-  }
-
-  .personagem-desc {
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.48);
-    line-height: 1.65;
-    font-weight: 300;
-  }
-
-  .personagem-edicao {
-    display: inline-block;
-    margin-top: 13px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    color: var(--vermelho);
-    border: 1px solid rgba(204,0,0,0.3);
-    padding: 2px 10px;
-    border-radius: 2px;
-  }
-
   /* ========== ANUNCIANTES ========== */
   .anunciantes {
     background: var(--cinza);
@@ -800,8 +894,6 @@
 </head>
 <body>
 
-
-
 <!-- ========== NAV ========== -->
 <nav>
   <a href="#" class="nav-logo">
@@ -824,7 +916,7 @@
   <video class="hero-video-bg" src="https://res.cloudinary.com/die6uwzqx/video/upload/v1779910777/jogador-chute.mp4_ah8g5r.mp4" autoplay muted loop playsinline></video>
   <div class="hero-stars" id="stars"></div>
 
-  <div class="hero-badge">⚽TRIBUNA HOJE APRESENTA⚽</div>
+  <div class="hero-badge">⚽ TRIBUNA HOJE APRESENTA ⚽</div>
 
   <h1 class="hero-title">
     HISTÓRIAS
@@ -847,8 +939,8 @@
   </div>
 
   <div class="hero-cta">
-    <a href="#encartes" class="btn btn-primary">VER A EDIÇÃO DE 2018</a>
-    <a href="#anuncie" class="btn btn-secondary">EDIÇÃO 2026 EM PROGRESSO</a>
+    <a href="#edicao2018" class="btn btn-primary">VER A EDIÇÃO DE 2018</a>
+    <a href="#encartes" class="btn btn-secondary">EDIÇÃO 2026 EM PROGRESSO</a>
   </div>
 
   <div class="hero-scroll">Rolar</div>
@@ -886,6 +978,73 @@
   </div>
 </div>
 
+<!-- ========== GALERIA ANTES/DEPOIS ========== -->
+<section class="galeria-restauracao reveal">
+  <div class="galeria-restauracao-inner">
+    <div class="galeria-header">
+      <span class="section-tag">◈ MEMÓRIA RESTAURADA</span>
+      <h2 class="section-title">O FUTEBOL <em>ALAGOANO</em><br>REVIVIDO</h2>
+    </div>
+    <div class="galeria-grid">
+
+      <div class="galeria-item">
+        <img src="foto1-antes.jpg" alt="Foto histórica restaurada 1">
+        <span class="galeria-badge antes">ANTES</span>
+        <div class="galeria-label">
+          <strong>Jogador Histórico 1</strong>
+          Arquivo restaurado · Acervo Tribuna Hoje
+        </div>
+      </div>
+
+      <div class="galeria-item">
+        <img src="foto1-depois.jpg" alt="Foto histórica restaurada 1 — depois">
+        <span class="galeria-badge depois">DEPOIS</span>
+        <div class="galeria-label">
+          <strong>Jogador Histórico 1</strong>
+          Foto restaurada digitalmente
+        </div>
+      </div>
+
+      <div class="galeria-item">
+        <img src="foto2-antes.jpg" alt="Foto histórica restaurada 2">
+        <span class="galeria-badge antes">ANTES</span>
+        <div class="galeria-label">
+          <strong>Jogador Histórico 2</strong>
+          Arquivo restaurado · Acervo Tribuna Hoje
+        </div>
+      </div>
+
+      <div class="galeria-item">
+        <img src="foto2-depois.jpg" alt="Foto histórica restaurada 2 — depois">
+        <span class="galeria-badge depois">DEPOIS</span>
+        <div class="galeria-label">
+          <strong>Jogador Histórico 2</strong>
+          Foto restaurada digitalmente
+        </div>
+      </div>
+
+      <div class="galeria-item">
+        <img src="foto3-antes.jpg" alt="Foto histórica restaurada 3">
+        <span class="galeria-badge antes">ANTES</span>
+        <div class="galeria-label">
+          <strong>Jogador Histórico 3</strong>
+          Arquivo restaurado · Acervo Tribuna Hoje
+        </div>
+      </div>
+
+      <div class="galeria-item">
+        <img src="foto3-depois.jpg" alt="Foto histórica restaurada 3 — depois">
+        <span class="galeria-badge depois">DEPOIS</span>
+        <div class="galeria-label">
+          <strong>Jogador Histórico 3</strong>
+          Foto restaurada digitalmente
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ========== SOBRE ========== -->
 <section class="sobre reveal">
   <div>
@@ -906,9 +1065,93 @@
   <div class="divider-line"></div>
 </div>
 
-<!-- ========== ENCARTES / TIMELINE ========== -->
-<section class="encartes" id="encartes">
-  <div class="encartes-header reveal">
+<!-- ========== CAPAS 2018 ========== -->
+<section class="capas2018 reveal" id="edicao2018">
+  <div class="capas2018-inner">
+    <div class="capas2018-header">
+      <span class="section-tag">◈ EDIÇÃO ESPECIAL</span>
+      <h2 class="section-title">AS CAPAS DE <em>2018</em></h2>
+    </div>
+    <div class="capas2018-grid">
+
+      <!-- Substitua os href pelos links dos PDFs e src pelas imagens das capas -->
+      <a href="pdf1-2018.pdf" target="_blank" class="capa-card">
+        <img src="1capa2018.png" alt="Edição 1 — 2018">
+        <span class="capa-numero-badge">EDIÇÃO 1</span>
+        <div class="capa-overlay">
+          <div class="capa-num">◈ ENCARTE 1 · 2018</div>
+          <div class="capa-titulo">A VOZ ALAGOANA NA COPA</div>
+          <div class="capa-pdf-btn">📄 LER PDF COMPLETO</div>
+        </div>
+      </a>
+
+      <a href="pdf2-2018.pdf" target="_blank" class="capa-card">
+        <img src="2capa2018.png" alt="Edição 2 — 2018">
+        <span class="capa-numero-badge">EDIÇÃO 2</span>
+        <div class="capa-overlay">
+          <div class="capa-num">◈ ENCARTE 2 · 2018</div>
+          <div class="capa-titulo">JOÃOZINHO PAULISTA: ÍDOLO NACIONAL</div>
+          <div class="capa-pdf-btn">📄 LER PDF COMPLETO</div>
+        </div>
+      </a>
+
+      <a href="pdf3-2018.pdf" target="_blank" class="capa-card">
+        <img src="3capa2018.png" alt="Edição 3 — 2018">
+        <span class="capa-numero-badge">EDIÇÃO 3</span>
+        <div class="capa-overlay">
+          <div class="capa-num">◈ ENCARTE 3 · 2018</div>
+          <div class="capa-titulo">GARRINCHA JOGOU PELO CSA E ASA</div>
+          <div class="capa-pdf-btn">📄 LER PDF COMPLETO</div>
+        </div>
+      </a>
+
+      <a href="pdf4-2018.pdf" target="_blank" class="capa-card">
+        <img src="4capa2018.png" alt="Edição 4 — 2018">
+        <span class="capa-numero-badge">EDIÇÃO 4</span>
+        <div class="capa-overlay">
+          <div class="capa-num">◈ ENCARTE 4 · 2018</div>
+          <div class="capa-titulo">BASTINHO: O VICE-REI DA CBF</div>
+          <div class="capa-pdf-btn">📄 LER PDF COMPLETO</div>
+        </div>
+      </a>
+
+      <a href="pdf5-2018.pdf" target="_blank" class="capa-card">
+        <img src="5capa2018.png" alt="Edição 5 — 2018">
+        <span class="capa-numero-badge">EDIÇÃO 5</span>
+        <div class="capa-overlay">
+          <div class="capa-num">◈ ENCARTE 5 · 2018</div>
+          <div class="capa-titulo">A ERA DE OURO DO VÔLEI ALAGOANO</div>
+          <div class="capa-pdf-btn">📄 LER PDF COMPLETO</div>
+        </div>
+      </a>
+
+      <a href="pdf6-2018.pdf" target="_blank" class="capa-card">
+        <img src="6capa2018.png" alt="Edição 6 — 2018">
+        <span class="capa-numero-badge">EDIÇÃO 6</span>
+        <div class="capa-overlay">
+          <div class="capa-num">◈ ENCARTE 6 · 2018</div>
+          <div class="capa-titulo">RIVALIDADE CRB X CSA: 110 ANOS</div>
+          <div class="capa-pdf-btn">📄 LER PDF COMPLETO</div>
+        </div>
+      </a>
+
+      <a href="pdf7-2018.pdf" target="_blank" class="capa-card">
+        <img src="7capa2018.png" alt="Edição 7 — 2018">
+        <span class="capa-numero-badge">EDIÇÃO 7</span>
+        <div class="capa-overlay">
+          <div class="capa-num">◈ ENCARTE 7 · FINAL 2018</div>
+          <div class="capa-titulo">DIDA: GRATIDÃO, ANEURISMA E MORTE</div>
+          <div class="capa-pdf-btn">📄 LER PDF COMPLETO</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== ENCARTES / TIMELINE 2026 ========== -->
+<section class="encartes reveal" id="encartes">
+  <div class="encartes-header">
     <span class="section-tag">◈ A EDIÇÃO 2026</span>
     <h2 class="section-title">SETE ENCARTES,<br><em>SETE HISTÓRIAS</em></h2>
   </div>
@@ -927,7 +1170,7 @@
           <li>Dida: a descoberta do "Vendaval" alagoano</li>
           <li>Juvenal: o rei do Jóquei Brasileiro</li>
         </ul>
-        <a href="#" class="encarte-btn">Ler edição →</a>
+        <a href="#" class="encarte-btn">Em breve →</a>
       </div>
       <div class="encarte-center"><div class="encarte-dot">1</div></div>
       <div class="encarte-spacer"></div>
@@ -947,7 +1190,7 @@
           <li>Sebastião Canuto: a arbitragem alagoana</li>
           <li>Tomires: o paredão alagoano do Flamengo</li>
         </ul>
-        <a href="#" class="encarte-btn">Ler edição →</a>
+        <a href="#" class="encarte-btn">Em breve →</a>
       </div>
     </div>
 
@@ -964,7 +1207,7 @@
           <li>Roberto Firmino: um jogador das Afábias</li>
           <li>Zagallo: o genial maestro da seleção tricampeã</li>
         </ul>
-        <a href="#" class="encarte-btn">Ler edição →</a>
+        <a href="#" class="encarte-btn">Em breve →</a>
       </div>
       <div class="encarte-center"><div class="encarte-dot">3</div></div>
       <div class="encarte-spacer"></div>
@@ -984,7 +1227,7 @@
           <li>Dida encontra Eusébio e Puskas</li>
           <li>Lauthenay e a construção do Rei Pelé</li>
         </ul>
-        <a href="#" class="encarte-btn">Ler edição →</a>
+        <a href="#" class="encarte-btn">Em breve →</a>
       </div>
     </div>
 
@@ -1001,7 +1244,7 @@
           <li>Haroldo Miranda: o batuta da imprensa esportiva</li>
           <li>Entrevista Ronaldo Lessa e Kátia Born</li>
         </ul>
-        <a href="#" class="encarte-btn">Ler edição →</a>
+        <a href="#" class="encarte-btn">Em breve →</a>
       </div>
       <div class="encarte-center"><div class="encarte-dot">5</div></div>
       <div class="encarte-spacer"></div>
@@ -1022,7 +1265,7 @@
           <li>Sávio de Almeida: lembranças do clássico</li>
           <li>Eduardo Canuto: um ídolo do box</li>
         </ul>
-        <a href="#" class="encarte-btn">Ler edição →</a>
+        <a href="#" class="encarte-btn">Em breve →</a>
       </div>
     </div>
 
@@ -1038,72 +1281,12 @@
           <li>Miguel Rosa, Biu Cabecinha e Silva: ídolos e fatos</li>
           <li>A morte não tira o brilho do legado de Dida</li>
         </ul>
-        <a href="#" class="encarte-btn">Ler edição →</a>
+        <a href="#" class="encarte-btn">Em breve →</a>
       </div>
       <div class="encarte-center"><div class="encarte-dot">7</div></div>
       <div class="encarte-spacer"></div>
     </div>
 
-  </div>
-</section>
-
-<!-- ========== PERSONAGENS ========== -->
-<section class="destaques" id="personagens">
-  <div class="destaques-inner">
-    <div class="destaques-header reveal">
-      <span class="section-tag">◈ OS PROTAGONISTAS</span>
-      <h2 class="section-title">PERSONAGENS <em>INESQUECÍVEIS</em></h2>
-    </div>
-    <div class="personagens-grid">
-      <div class="personagem-card reveal">
-        <span class="personagem-icon">⚽</span>
-        <div class="personagem-nome">Dida</div>
-        <p class="personagem-desc">O "Vendaval" alagoano, campeão do mundo em 1958, ídolo do Flamengo e curador do Museu dos Esportes de Maceió.</p>
-        <span class="personagem-edicao">Série Biográfica · Edições 1–7</span>
-      </div>
-      <div class="personagem-card reveal">
-        <span class="personagem-icon">🎙️</span>
-        <div class="personagem-nome">Edson Mauro</div>
-        <p class="personagem-desc">A voz alagoana escalada para narrar os jogos da Copa do Mundo 2026 para todo o Brasil.</p>
-        <span class="personagem-edicao">Entrevista exclusiva · Edição 1</span>
-      </div>
-      <div class="personagem-card reveal">
-        <span class="personagem-icon">🥅</span>
-        <div class="personagem-nome">Xavier · Flecha Negra</div>
-        <p class="personagem-desc">Penedense que marcou mais de 800 gols e jogou até os 46 anos. Maior craque da história do Sport Club Penedense.</p>
-        <span class="personagem-edicao">Perfil · Edição 2</span>
-      </div>
-      <div class="personagem-card reveal">
-        <span class="personagem-icon">🔮</span>
-        <div class="personagem-nome">Garrincha em Alagoas</div>
-        <p class="personagem-desc">O anjo das pernas tortas vestiu CSA e ASA, e jogou em Delmiro Gouveia nos anos 1970 no ocaso da carreira.</p>
-        <span class="personagem-edicao">Reportagem especial · Edição 3</span>
-      </div>
-      <div class="personagem-card reveal">
-        <span class="personagem-icon">⚖️</span>
-        <div class="personagem-nome">Sebastião Canuto</div>
-        <p class="personagem-desc">O árbitro alagoano referência no Norte e Nordeste. Apitou 42 clássicos CSA x CRB e integrou os quadros especiais da FIFA.</p>
-        <span class="personagem-edicao">Entrevista · Edição 4</span>
-      </div>
-      <div class="personagem-card reveal">
-        <span class="personagem-icon">👑</span>
-        <div class="personagem-nome">Marta</div>
-        <p class="personagem-desc">A menina de Dois Riachos que se tornou cinco vezes a melhor jogadora do mundo e embaixadora da ONU.</p>
-        <span class="personagem-edicao">Especial · Edição 5</span>
-      </div>
-      <div class="personagem-card reveal">
-        <span class="personagem-icon">🇵🇹</span>
-        <div class="personagem-nome">Pepe</div>
-        <p class="personagem-desc">Nascido em Maceió, naturalizado português. Multicampeão pelo Real Madrid e pela seleção de Portugal.</p>
-        <span class="personagem-edicao">Perfil · Edição 3</span>
-      </div>
-      <div class="personagem-card reveal">
-        <span class="personagem-icon">✍️</span>
-        <div class="personagem-nome">Roberto Menezes</div>
-        <p class="personagem-desc">O "Galego" do CRB — elegante, cabeça levantada, cabeleira loura. Quase ganhou a Bola de Prata em 1973.</p>
-        <span class="personagem-edicao">Ídolos e Fatos · Edição 1</span>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1152,12 +1335,9 @@
 <!-- ========== NEWSLETTER / WHATSAPP ========== -->
 <section class="newsletter reveal" id="newsletter">
   <div class="newsletter-inner">
-    <h2>📲 RECEBA NO WHATSAPP</h2>
-    <p>Cadastre-se e receba a edição 2026 da História das Copas 2026.</p>
-    <div class="newsletter-form">
-      <input class="newsletter-input" type="tel" placeholder="(82) 9 9999-9999">
-      <button class="btn btn-primary">Quero receber</button>
-    </div>
+    <h2>📲 FALE CONOSCO PELO WHATSAPP</h2>
+    <p>Entre em contato com a equipe do Tribuna Hoje para anunciar, adquirir sua edição impressa ou saber mais sobre o projeto.</p>
+    <a href="https://wa.me/5582999999999" target="_blank" class="btn btn-primary">💬 CHAMAR NO WHATSAPP</a>
   </div>
 </section>
 

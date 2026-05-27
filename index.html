@@ -127,16 +127,20 @@
     height: 100%;
     object-fit: cover;
     z-index: 0;
-    opacity: 0.45;
+    opacity: 1;
   }
 
+  /* overlay mais sutil — só escurece levemente, sem verde */
   .hero::before {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(160deg, rgba(2,26,16,0.85) 0%, rgba(3,37,24,0.75) 30%, rgba(4,47,30,0.70) 55%, rgba(6,64,40,0.80) 100%),
-      radial-gradient(ellipse 55% 45% at 50% 65%, rgba(0,100,40,0.25) 0%, transparent 70%);
+      linear-gradient(to bottom,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.30) 40%,
+        rgba(0,0,0,0.55) 75%,
+        rgba(0,0,0,0.85) 100%);
     z-index: 1;
     pointer-events: none;
   }
@@ -166,7 +170,7 @@
     letter-spacing: 0.28em;
     padding: 6px 22px;
     border-radius: 2px;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
     animation: fadeDown 0.7s ease both;
     position: relative; z-index: 2;
   }
@@ -175,45 +179,85 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(0.9rem, 2vw, 1.2rem);
     letter-spacing: 0.4em;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 40px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 10px;
     animation: fadeDown 0.8s 0.1s ease both;
     position: relative; z-index: 2;
   }
 
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4.5rem, 13vw, 11rem);
-    line-height: 0.86;
+    font-size: clamp(5rem, 15vw, 13rem);
+    line-height: 0.88;
     color: #fff;
     animation: fadeDown 0.9s 0.2s ease both;
-    letter-spacing: 0.015em;
+    letter-spacing: 0.01em;
     position: relative; z-index: 2;
+    text-shadow: 0 4px 40px rgba(0,0,0,0.6);
   }
 
   .hero-title .linha-copas {
     display: block;
     color: var(--amarelo);
-    text-shadow: 0 0 60px rgba(255,204,0,0.4);
+    text-shadow: 0 0 80px rgba(255,204,0,0.5), 0 4px 40px rgba(0,0,0,0.6);
   }
 
   .hero-subtitle {
-    font-size: clamp(0.95rem, 2.2vw, 1.25rem);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
     font-weight: 300;
-    color: rgba(255,255,255,0.62);
-    margin-top: 26px;
-    max-width: 600px;
+    color: rgba(255,255,255,0.75);
+    margin-top: 20px;
+    max-width: 540px;
     line-height: 1.65;
     animation: fadeDown 1s 0.35s ease both;
+    position: relative; z-index: 2;
+  }
+
+  /* ── NOMES EM DESTAQUE ── */
+  .hero-nomes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 6px;
+    margin-top: 32px;
+    max-width: 780px;
+    animation: fadeDown 1s 0.45s ease both;
+    position: relative; z-index: 2;
+  }
+
+  .hero-nome-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 6px 16px;
+    border-radius: 2px;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+
+  .hero-nome-tag:hover {
+    background: rgba(255,204,0,0.12);
+    border-color: var(--amarelo);
+    color: var(--amarelo);
+  }
+
+  .hero-nome-tag.destaque {
+    background: rgba(204,0,0,0.25);
+    border-color: rgba(204,0,0,0.5);
+    color: #fff;
   }
 
   .hero-meta {
     display: flex;
     gap: 48px;
-    margin-top: 52px;
+    margin-top: 36px;
     animation: fadeDown 1s 0.5s ease both;
     flex-wrap: wrap;
     justify-content: center;
+    position: relative; z-index: 2;
   }
 
   .hero-meta-item { text-align: center; }
@@ -234,12 +278,45 @@
   }
 
   .hero-cta {
-    margin-top: 50px;
+    margin-top: 36px;
     display: flex;
     gap: 14px;
     flex-wrap: wrap;
     justify-content: center;
     animation: fadeDown 1s 0.65s ease both;
+    position: relative; z-index: 2;
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.35);
+    animation: bounce 2.5s infinite;
+    z-index: 2;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    width: 1px; height: 36px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(9px); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   .btn {
@@ -259,37 +336,6 @@
   .btn-primary { background: var(--amarelo); color: #000; }
   .btn-secondary { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.3); }
   .btn-secondary:hover { border-color: var(--amarelo); color: var(--amarelo); }
-
-  .hero-scroll {
-    position: absolute;
-    bottom: 30px; left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    color: rgba(255,255,255,0.26);
-    animation: bounce 2.5s infinite;
-  }
-
-  .hero-scroll::after {
-    content: '';
-    width: 1px; height: 36px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.22), transparent);
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50%       { transform: translateX(-50%) translateY(9px); }
-  }
-
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
 
   /* ========== FAIXA MARQUEE ========== */
   .copa-stripe { background: var(--vermelho); padding: 13px 0; overflow: hidden; }
@@ -777,15 +823,35 @@
 <section class="hero">
   <video class="hero-video-bg" src="https://res.cloudinary.com/die6uwzqx/video/upload/v1779910777/jogador-chute.mp4_ah8g5r.mp4" autoplay muted loop playsinline></video>
   <div class="hero-stars" id="stars"></div>
+
   <div class="hero-badge">⚽ COPA DO MUNDO 2026</div>
   <div class="hero-supertitle">TRIBUNA HOJE APRESENTA</div>
+
   <h1 class="hero-title">
     HISTÓRIAS
     <span class="linha-copas">DAS COPAS</span>
   </h1>
+
   <p class="hero-subtitle">
     O melhor do futebol alagoano, nacional e mundial em 7 edições especiais durante a Copa do Mundo 2026.
   </p>
+
+  <!-- NOMES EM DESTAQUE -->
+  <div class="hero-nomes">
+    <span class="hero-nome-tag destaque">Dida · Vendaval Alagoano</span>
+    <span class="hero-nome-tag">Edson Mauro</span>
+    <span class="hero-nome-tag">Xavier · Flecha Negra</span>
+    <span class="hero-nome-tag destaque">Garrincha em Alagoas</span>
+    <span class="hero-nome-tag">Joãozinho Paulista</span>
+    <span class="hero-nome-tag">Marta · Dois Riachos</span>
+    <span class="hero-nome-tag destaque">Pepe · Nascido em Maceió</span>
+    <span class="hero-nome-tag">Roberto Menezes</span>
+    <span class="hero-nome-tag">Sebastião Canuto</span>
+    <span class="hero-nome-tag destaque">CRB x CSA · 110 Anos</span>
+    <span class="hero-nome-tag">Luiz Jatobá</span>
+    <span class="hero-nome-tag">Roberto Firmino</span>
+  </div>
+
   <div class="hero-meta">
     <div class="hero-meta-item">
       <div class="hero-meta-number">2018</div>
@@ -796,10 +862,12 @@
       <div class="hero-meta-label">Copa do Mundo</div>
     </div>
   </div>
+
   <div class="hero-cta">
     <a href="#encartes" class="btn btn-primary">VER A EDIÇÃO DE 2018</a>
     <a href="#anuncie" class="btn btn-secondary">EDIÇÃO 2026 EM PROGRESSO</a>
   </div>
+
   <div class="hero-scroll">Rolar</div>
 </section>
 

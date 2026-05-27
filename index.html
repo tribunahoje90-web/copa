@@ -27,90 +27,6 @@
     overflow-x: hidden;
   }
 
-  /* ========== VIDEO INTRO ========== */
-  #video-intro {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 1.2s ease;
-  }
-
-  #intro-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.88;
-  }
-
-  .intro-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-    background: rgba(0,0,0,0.38);
-    pointer-events: none;
-  }
-
-  .intro-overlay img {
-    height: 52px;
-    filter: brightness(0) invert(1);
-    animation: introPulse 2s ease-in-out infinite;
-  }
-
-  .intro-overlay-tag {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1rem;
-    letter-spacing: 0.45em;
-    color: rgba(255,255,255,0.45);
-  }
-
-  @keyframes introPulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
-  }
-
-  .intro-skip {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.3);
-    color: rgba(255,255,255,0.6);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.85rem;
-    letter-spacing: 0.2em;
-    padding: 10px 26px;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  .intro-skip:hover {
-    border-color: var(--amarelo);
-    color: var(--amarelo);
-  }
-
-  .intro-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    background: var(--vermelho);
-    animation: introProgress 12s linear forwards;
-  }
-
-  @keyframes introProgress {
-    from { width: 0%; }
-    to   { width: 100%; }
-  }
-
   /* ========== NAV ========== */
   nav {
     position: sticky;
@@ -825,16 +741,7 @@
 </head>
 <body>
 
-<!-- ========== VIDEO INTRO ========== -->
-<div id="video-intro">
-  <video id="intro-video" src="jogador-chute.mp4" autoplay muted playsinline></video>
-  <div class="intro-overlay">
-    <img src="LINE_HORIZONTAL.png" alt="Tribuna Hoje">
-    <div class="intro-overlay-tag">HISTÓRIAS DAS COPAS 2026</div>
-  </div>
-  <button class="intro-skip" onclick="skipIntro()">PULAR →</button>
-  <div class="intro-progress" id="intro-progress"></div>
-</div>
+
 
 <!-- ========== NAV ========== -->
 <nav>
@@ -1199,24 +1106,6 @@
 
 <!-- ========== SCRIPTS ========== -->
 <script>
-  const introEl  = document.getElementById('video-intro');
-  const videoEl  = document.getElementById('intro-video');
-  const MAX_SECS = 12;
-  let introTimer;
-
-  function skipIntro() {
-    clearTimeout(introTimer);
-    introEl.style.opacity = '0';
-    introEl.style.pointerEvents = 'none';
-    setTimeout(() => { introEl.style.display = 'none'; }, 1200);
-    document.body.style.overflow = 'auto';
-  }
-
-  document.body.style.overflow = 'hidden';
-  videoEl.addEventListener('ended', skipIntro);
-  introTimer = setTimeout(skipIntro, MAX_SECS * 1000);
-  videoEl.addEventListener('error', () => { clearTimeout(introTimer); setTimeout(skipIntro, 800); });
-
   const starsEl = document.getElementById('stars');
   for (let i = 0; i < 55; i++) {
     const s = document.createElement('div');

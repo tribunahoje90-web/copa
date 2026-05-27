@@ -103,7 +103,7 @@
     left: 0;
     height: 3px;
     background: var(--vermelho);
-    animation: introProgress 10s linear forwards;
+    animation: introProgress 12s linear forwards;
   }
 
   @keyframes introProgress {
@@ -111,106 +111,83 @@
     to   { width: 100%; }
   }
 
-  /* ========== BARRA PATROCINADORES TOPO ========== */
-  .patrocinadores-bar {
-  background: #000;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  padding: 10px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.patrocinadores-bar-left {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.patrocinadores-bar-label {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.28em;
-  color: #ffffff;
-  text-transform: uppercase;
-  white-space: nowrap;
-  border-right: 1px solid rgba(255,255,255,0.2);
-  padding-right: 22px;
-}
-
-.patrocinadores-logos {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-
-.patrocinador-logo img {
-  height: 32px;
-  width: auto;
-  object-fit: contain;
-  opacity: 0.9;
-  transition: opacity 0.2s;
-}
-
-.patrocinador-logo img:hover { opacity: 1; }
-
-.patrocinadores-bar-right img {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
-  opacity: 0.9;
-  transition: opacity 0.2s;
-}
-
-.patrocinadores-bar-right img:hover { opacity: 1; }
-
-@media (max-width: 600px) {
-  .patrocinadores-bar { padding: 10px 16px; flex-wrap: wrap; gap: 12px; }
-  .patrocinadores-bar-label { display: none; }
-  .patrocinador-logo img { height: 24px; }
-  .patrocinadores-bar-right img { height: 20px; }
-}
   /* ========== NAV ========== */
   nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 14px 40px;
+    padding: 12px 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: rgba(0,0,0,0.92);
+    background: rgba(0,0,0,0.95);
     backdrop-filter: blur(14px);
     border-bottom: 2px solid var(--vermelho);
   }
 
   .nav-logo img {
-    height: 38px;
+    height: 36px;
     width: auto;
     display: block;
     filter: brightness(0) invert(1);
   }
 
-  .nav-links {
+  /* patrocinadores dentro do nav */
+  .nav-patrocinadores {
     display: flex;
-    gap: 32px;
-    list-style: none;
+    align-items: center;
+    gap: 18px;
+    border-left: 1px solid rgba(255,255,255,0.12);
+    padding-left: 24px;
   }
 
-  .nav-links a {
+  .nav-patrocinadores-label {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 0.95rem;
-    letter-spacing: 0.18em;
-    color: rgba(255,255,255,0.55);
-    text-decoration: none;
-    transition: color 0.2s;
+    font-size: 0.62rem;
+    letter-spacing: 0.25em;
+    color: #ffffff;
+    white-space: nowrap;
+    text-transform: uppercase;
+    border-right: 1px solid rgba(255,255,255,0.12);
+    padding-right: 18px;
   }
 
-  .nav-links a:hover { color: var(--amarelo); }
+  .nav-patrocinadores-logos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
 
-  @media (max-width: 600px) {
-    nav { padding: 12px 20px; }
-    .nav-links { display: none; }
+  .nav-patrocinadores-logos img {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.92;
+    transition: opacity 0.2s;
+  }
+
+  .nav-patrocinadores-logos img:hover { opacity: 1; }
+
+  /* somoscop no canto direito do nav */
+  .nav-somoscop img {
+    height: 26px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+    margin-left: 24px;
+    border-left: 1px solid rgba(255,255,255,0.12);
+    padding-left: 24px;
+  }
+
+  .nav-somoscop img:hover { opacity: 1; }
+
+  @media (max-width: 700px) {
+    nav { padding: 10px 16px; }
+    .nav-patrocinadores-label { display: none; }
+    .nav-patrocinadores-logos img { height: 20px; }
+    .nav-patrocinadores { padding-left: 12px; gap: 10px; }
+    .nav-somoscop img { height: 18px; margin-left: 12px; padding-left: 12px; }
     .nav-logo img { height: 26px; }
   }
 
@@ -850,39 +827,13 @@
 
 <!-- ========== VIDEO INTRO ========== -->
 <div id="video-intro">
-  <video
-    id="intro-video"
-    src="jogador-chute.mp4"
-    autoplay
-    muted
-    playsinline
-  ></video>
-
+  <video id="intro-video" src="jogador-chute.mp4" autoplay muted playsinline></video>
   <div class="intro-overlay">
     <img src="LINE_HORIZONTAL.png" alt="Tribuna Hoje">
     <div class="intro-overlay-tag">HISTÓRIAS DAS COPAS 2026</div>
   </div>
-
   <button class="intro-skip" onclick="skipIntro()">PULAR →</button>
   <div class="intro-progress" id="intro-progress"></div>
-</div>
-
-<!-- ========== BARRA PATROCINADORES ========== -->
-<div class="patrocinadores-bar">
-  <div class="patrocinadores-bar-left">
-    <span class="patrocinadores-bar-label">⭐ Nossa Seleção de Patrocinadores</span>
-    <div class="patrocinadores-logos">
-      <div class="patrocinador-logo">
-        <img src="logopatrocinador1.png" alt="">
-      </div>
-      <div class="patrocinador-logo">
-        <img src="logopatrocinador2.png" alt="">
-      </div>
-    </div>
-  </div>
-  <div class="patrocinadores-bar-right">
-    <img src="somoscop.png" alt="Somos Copa">
-  </div>
 </div>
 
 <!-- ========== NAV ========== -->
@@ -890,24 +841,30 @@
   <a href="#" class="nav-logo">
     <img src="LINE_HORIZONTAL.png" alt="Tribuna Hoje">
   </a>
+  <div class="nav-patrocinadores">
+    <span class="nav-patrocinadores-label">⭐ Nossa Seleção de Patrocinadores</span>
+    <div class="nav-patrocinadores-logos">
+      <img src="logopatrocinador1.png" alt="Patrocinador 1">
+      <img src="logopatrocinador2.png" alt="Patrocinador 2">
+    </div>
+  </div>
+  <div class="nav-somoscop">
+    <img src="somoscop.png" alt="Somos Copa">
+  </div>
 </nav>
 
 <!-- ========== HERO ========== -->
 <section class="hero">
   <div class="hero-stars" id="stars"></div>
-
   <div class="hero-badge">⚽ COPA DO MUNDO 2026</div>
   <div class="hero-supertitle">TRIBUNA HOJE APRESENTA</div>
-
   <h1 class="hero-title">
     HISTÓRIAS
     <span class="linha-copas">DAS COPAS</span>
   </h1>
-
   <p class="hero-subtitle">
     O melhor do futebol alagoano, nacional e mundial em 7 edições especiais durante a Copa do Mundo 2026.
   </p>
-
   <div class="hero-meta">
     <div class="hero-meta-item">
       <div class="hero-meta-number">2018</div>
@@ -918,19 +875,30 @@
       <div class="hero-meta-label">Copa do Mundo</div>
     </div>
   </div>
-
   <div class="hero-cta">
     <a href="#encartes" class="btn btn-primary">VER A EDIÇÃO DE 2018</a>
-    <a href="#anuncie"  class="btn btn-secondary">EDIÇÃO 2026 EM PROGRESSO</a>
+    <a href="#anuncie" class="btn btn-secondary">EDIÇÃO 2026 EM PROGRESSO</a>
   </div>
-
   <div class="hero-scroll">Rolar</div>
 </section>
 
 <!-- ========== FAIXA MARQUEE ========== -->
 <div class="copa-stripe">
   <div class="copa-stripe-inner">
-    <span>⚽ACOMPANHE OS JOGOS DO BRASIL</span>
+    <span>⚽ ACOMPANHE OS JOGOS DO BRASIL</span>
+    <span>★ COPA DO MUNDO FIFA 2026</span>
+    <span>⚽ 31 DE MAIO</span>
+    <span>★ TRIBUNA HOJE · HISTÓRIAS DAS COPAS</span>
+    <span>⚽ FUTEBOL ALAGOANO · CULTURA · HISTÓRIA</span>
+    <span>★ EDIÇÃO ESPECIAL IMPRESSO E DIGITAL</span>
+    <span>⚽ 6 DE JUNHO</span>
+    <span>★ COPA DO MUNDO FIFA 2026</span>
+    <span>⚽ 13 DE JUNHO</span>
+    <span>★ TRIBUNA HOJE · HISTÓRIAS DAS COPAS</span>
+    <span>⚽ 19 DE JUNHO JOGO DO BRASIL</span>
+    <span>⚽ 24 DE JUNHO JOGO DO BRASIL</span>
+    <span>★ 7 EDIÇÕES ESPECIAIS IMPRESSAS E DIGITAIS</span>
+    <span>⚽ ACOMPANHE OS JOGOS DO BRASIL</span>
     <span>★ COPA DO MUNDO FIFA 2026</span>
     <span>⚽ 31 DE MAIO</span>
     <span>★ TRIBUNA HOJE · HISTÓRIAS DAS COPAS</span>
@@ -968,12 +936,10 @@
 
 <!-- ========== ENCARTES / TIMELINE ========== -->
 <section class="encartes" id="encartes">
-
   <div class="encartes-header reveal">
     <span class="section-tag">◈ A EDIÇÃO 2026</span>
     <h2 class="section-title">SETE ENCARTES,<br><em>SETE HISTÓRIAS</em></h2>
   </div>
-
   <div class="timeline">
 
     <div class="encarte-card">
@@ -1233,10 +1199,9 @@
 
 <!-- ========== SCRIPTS ========== -->
 <script>
-  // ── VIDEO INTRO ──────────────────────────────────────
-  const introEl   = document.getElementById('video-intro');
-  const videoEl   = document.getElementById('intro-video');
-  const MAX_SECS  = 12; // some automaticamente após 12s se o vídeo não carregar
+  const introEl  = document.getElementById('video-intro');
+  const videoEl  = document.getElementById('intro-video');
+  const MAX_SECS = 12;
   let introTimer;
 
   function skipIntro() {
@@ -1247,45 +1212,24 @@
     document.body.style.overflow = 'auto';
   }
 
-  // Bloqueia scroll enquanto o vídeo toca
   document.body.style.overflow = 'hidden';
-
-  // Some quando o vídeo termina
   videoEl.addEventListener('ended', skipIntro);
-
-  // Fallback: some após MAX_SECS mesmo sem vídeo
   introTimer = setTimeout(skipIntro, MAX_SECS * 1000);
+  videoEl.addEventListener('error', () => { clearTimeout(introTimer); setTimeout(skipIntro, 800); });
 
-  // Se o arquivo de vídeo não existir/carregar, some em 1s
-  videoEl.addEventListener('error', () => {
-    clearTimeout(introTimer);
-    setTimeout(skipIntro, 800);
-  });
-
-  // ── ESTRELAS HERO ────────────────────────────────────
   const starsEl = document.getElementById('stars');
   for (let i = 0; i < 55; i++) {
     const s = document.createElement('div');
     s.className = 'star';
-    s.style.cssText = `
-      left: ${Math.random() * 100}%;
-      top: ${Math.random() * 100}%;
-      --dur: ${2 + Math.random() * 4}s;
-      --delay: ${Math.random() * 5}s;
-    `;
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${2+Math.random()*4}s;--delay:${Math.random()*5}s;`;
     starsEl.appendChild(s);
   }
 
-  // ── SCROLL REVEAL ────────────────────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 

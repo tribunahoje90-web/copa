@@ -6,7 +6,7 @@
 <title>Histórias das Copas 2026 — Tribuna Hoje</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  :root {xx
+  :root {
     --verde: #064028;
     --verde-claro: #00a650;
     --amarelo: #FFCC00;
@@ -1680,6 +1680,7 @@
 
 <!-- ========== SCRIPTS ========== -->
 <script>
+  // Estrelas hero
   const starsEl = document.getElementById('stars');
   for (let i = 0; i < 55; i++) {
     const s = document.createElement('div');
@@ -1702,12 +1703,18 @@
 
   document.querySelectorAll('video[id]').forEach(v => videoObserver.observe(v));
 
-((entries) => {
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
   }, { threshold: 0.1 });
+
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </script>
 
 </body>

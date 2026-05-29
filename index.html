@@ -1210,17 +1210,17 @@
       <!-- VÍDEO 1 — GOL DO PELÉ — Cloudinary (formato REELS vertical) -->
       <div class="video-lance-card reels">
         <video
-          src="https://res.cloudinary.com/die6uwzqx/video/upload/v1780025180/Era_1958._Pel%C3%A9_com_apenas_17_anos_marcou_dois_gols_na_final_da_Copa_do_Mundo._Um_deles_foi_es_u4mbzd.mp4"
+          id="video-pele"
+          src="COLE_AQUI_URL_CLOUDINARY_PELE.mp4"
           muted
           loop
           playsinline
           preload="auto"
-          id="video-pele"
-></video>
+        ></video>
         <div class="video-lance-info">
           <span class="video-lance-tag">◈ COPA DO MUNDO 1958 · SUÉCIA</span>
           <div class="video-lance-titulo">Pelé tinha apenas 17 anos quando encantou o planeta na final da Copa do Mundo.</div>
-          <div class="video-lance-desc">Foram dois gols históricos. Um deles, uma verdadeira obra de arte. O Rei ainda é o jogador mais jovem a conquistar o torneio. O Rei farmava aura como ninguém. Veja o vídeo</div>
+          <div class="video-lance-desc">Foram dois gols históricos. Um deles, uma verdadeira obra de arte. O Rei ainda é o jogador mais jovem a conquistar o torneio. O Rei farmava aura como ninguém. 👑✨</div>
         </div>
       </div>
 
@@ -1228,10 +1228,12 @@
       <!-- Substitua o src pela URL do Cloudinary quando tiver -->
       <div class="video-lance-card">
         <video
+          id="video-dida"
           src="COLE_AQUI_URL_CLOUDINARY_DIDA.mp4"
-          controls
-          poster=""
-          preload="none"
+          muted
+          loop
+          playsinline
+          preload="auto"
         ></video>
         <div class="video-lance-info">
           <span class="video-lance-tag">◈ ACERVO EXCLUSIVO · TRIBUNA HOJE</span>
@@ -1686,7 +1688,21 @@
     starsEl.appendChild(s);
   }
 
-  const observer = new IntersectionObserver((entries) => {
+  // Autoplay vídeos ao entrar na tela
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const vid = entry.target;
+      if (entry.isIntersecting) {
+        vid.play();
+      } else {
+        vid.pause();
+      }
+    });
+  }, { threshold: 0.4 });
+
+  document.querySelectorAll('video[id]').forEach(v => videoObserver.observe(v));
+
+((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
     });
